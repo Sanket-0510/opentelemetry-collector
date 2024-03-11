@@ -106,14 +106,11 @@ type ClientConfig struct {
 func NewDefaultClientConfig() ClientConfig {
 	// The default values are taken from the values of 'DefaultTransport' of 'http' package.
 
-	// Configure with the non-nil map value.
-	headers := make(map[string]configopaque.String)
-
 	maxIdleConns := 100
 	idleConnTimeout := 90 * time.Second
 
 	return ClientConfig{
-		Headers:         headers,
+		Headers:         make(map[string]configopaque.String),
 		MaxIdleConns:    &maxIdleConns,
 		IdleConnTimeout: &idleConnTimeout,
 	}
@@ -283,11 +280,9 @@ type ServerConfig struct {
 
 // NewDefaultServerConfig creates new ServerConfig with default values set
 func NewDefaultServerConfig() ServerConfig {
-	// Create a new map for ResponseHeaders
-	responseHeaders := make(map[string]configopaque.String)
 
 	return ServerConfig{
-		ResponseHeaders: responseHeaders,
+		ResponseHeaders: make(map[string]configopaque.String),
 	}
 }
 
